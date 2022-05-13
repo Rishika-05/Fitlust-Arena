@@ -1,0 +1,52 @@
+body{
+    background: linear-gradient(180deg,#494c56,#838899);
+    background-repeat: no-repeat;
+    height: 1000px;
+
+    
+}
+#mobile-btn{
+    color:white;
+}
+.navbar-toggler-icon{
+    color:white;
+}
+#mobile-btn span{
+    color:white;
+}
+#outer-nav{
+    background-color: transparent;
+    font-size:1.2rem;
+    color:#899da8;   
+}
+.nav-link{
+    color: white!important;
+}
+.nav-link:hover{
+    color:#899da8!important;
+    
+}
+.nav-link {
+    display: inline-block;
+    position: relative;
+    color: #899da8;
+}
+  
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #899da8;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.nav-link:hover:after {
+transform: scaleX(1);
+transform-origin: bottom left;
+}
+
