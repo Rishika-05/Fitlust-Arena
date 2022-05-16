@@ -1,0 +1,8 @@
+#header{
+    margin-top:-115px;
+    background: linear-gradient(180deg,#494c56,#838899);
+    background-repeat: no-repeat;
+    height: 100vh;
+    -webkit-clip-path: ellipse(84% 50% at 51% 40%);
+    clip-path: ellipse(84% 50% at 51% 40%);
+}

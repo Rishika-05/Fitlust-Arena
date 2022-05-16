@@ -1,10 +1,4 @@
-body{
-    background: linear-gradient(180deg,#494c56,#838899);
-    background-repeat: no-repeat;
-    height: 1000px;
 
-    
-}
 #mobile-btn{
     color:white;
 }
@@ -15,7 +9,7 @@ body{
     color:white;
 }
 #outer-nav{
-    background-color: transparent;
+    background: linear-gradient(180deg,#494c56,#53555e);
     font-size:1.2rem;
     color:#899da8;   
 }
@@ -48,5 +42,18 @@ body{
 .nav-link:hover:after {
 transform: scaleX(1);
 transform-origin: bottom left;
+}
+#ig-up{
+    display:none;
+}
+@media screen and (max-width:991px){
+    #ig-up{
+        display:block;
+        
+    }
+    #ig-down{
+        display:none;
+        
+    }
 }
 
