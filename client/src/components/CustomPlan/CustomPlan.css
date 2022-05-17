@@ -4,3 +4,17 @@
     height: 100vh; */
     
 }
+.label-margin{
+    margin-bottom:10px;
+    margin-top:50px;
+}
+.switch-style{  
+    display:flex;
+    flex-direction: row;
+}
+.name-mail{
+    background-color: #c5dbe7;
+    padding:15px;
+    border-radius:5px;
+    width:50vw;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container,Nav,Navbar} from "react-bootstrap"
+import {Container,Nav,Navbar,NavDropdown} from "react-bootstrap"
 import {ReactComponent as Logo} from "../../assets/fitlust2.svg"
 import { BsInstagram } from 'react-icons/bs';
 import "./Navbar.css"
@@ -9,6 +9,7 @@ import "./Navbar.css"
 function NavBar() {
   return (
 
+    <>
    
     <Navbar id = "outer-nav" expand = "lg" className = "navbar-dark sticky-top">
     <Container>
@@ -21,7 +22,11 @@ function NavBar() {
         <Nav className="m-auto">
           <Nav.Link className = "m-3 nav-link" href="/">HOME</Nav.Link>
           <Nav.Link className = "m-3 nav-link" href="#About">ABOUT</Nav.Link>
-          <Nav.Link className = "m-3 nav-link" href="#">ARTICLES</Nav.Link>
+          <NavDropdown title="ARTICLES" className = "m-3" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+        </NavDropdown>
           <Nav.Link className = "m-3 nav-link" href="/custom-plans">FREE CUSTOM PLAN</Nav.Link>
         </Nav>
         
@@ -31,6 +36,7 @@ function NavBar() {
       
     </Container>
   </Navbar>
+  </>
 
   )
 }
