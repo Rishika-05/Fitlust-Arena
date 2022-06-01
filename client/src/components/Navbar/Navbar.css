@@ -38,7 +38,27 @@
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
 }
-  
+.drp-dwn{
+    height:50px;
+    padding:10px;
+    font-size:1.3rem;
+    
+}
+.drp-dwn.dropdown-item{
+    color:white;
+    font-weight:400;
+}
+.drp-dwn:hover{
+    transform: scale(1.04);
+    border-radius: 10px;
+
+}
+.dropdown-menu.show{
+    padding:10px;
+    background-color: #53555e;
+    
+}
+
 .nav-link:hover:after {
 transform: scaleX(1);
 transform-origin: bottom left;

@@ -1,0 +1,9 @@
+.arti-card{
+    transition: transform .2s;
+    border:none;
+    box-shadow: 0 3px 10px 0 rgba(5, 4, 4, 0.1);
+}
+
+.arti-card:hover{
+    transform:scale(1.02)
+}

@@ -23,10 +23,10 @@ function NavBar() {
           <Nav.Link className = "m-3 nav-link" href="/">HOME</Nav.Link>
           <Nav.Link className = "m-3 nav-link" href="#About">ABOUT</Nav.Link>
           <NavDropdown title="ARTICLES" className = "m-3" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        </NavDropdown>
+            <NavDropdown.Item className = "drp-dwn" href="/articles/training">Training</NavDropdown.Item>
+            <NavDropdown.Item className = "drp-dwn" href="/articles/nutrition">Nutrition</NavDropdown.Item>
+            <NavDropdown.Item className = "drp-dwn" href="/articles/supplements">Supplements</NavDropdown.Item>
+          </NavDropdown>
           <Nav.Link className = "m-3 nav-link" href="/custom-plans">FREE CUSTOM PLAN</Nav.Link>
         </Nav>
         
