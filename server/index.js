@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(express.json());
-app.use('/',require('./routes'));
+app.use('/', require('./routes'));
 app.listen(port, () => {
     console.log(`Fitlustarena listening at http://localhost:${port}`);
 })

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "./ArticleForm.css";
 export const ArticleForm = () => {
@@ -6,6 +7,33 @@ export const ArticleForm = () => {
     { subtitle: "", image: undefined, content: "" },
   ]);
   const [change, setChange] = useState(1);
+
+
+  //start of change
+  const [file, setfile] = useState(null);
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', file);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    const url = "http://localhost:9002/upload";
+    axios.post(url, formData, config).then((res) => {
+      alert("hogaya bhai");
+      console.log(res.data);
+    }).catch((err) => {
+      console.log('err', err);
+    });
+  }
+  const onInuptChange = (e) => {
+    setfile(e.target.files[0]);
+  }
+  //end of change
+
+
   const addsubsection = () => {
     var dataObj = { subtitle: "", image: undefined, content: "" };
     var sublistNew = sublist;
@@ -53,7 +81,7 @@ export const ArticleForm = () => {
     setSublist(copy);
     setChange(!change);
   };
-  const test = async (e) => {
+  /*const test = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     console.log(e.target.image.files[0]);
@@ -67,10 +95,10 @@ export const ArticleForm = () => {
         "Content-Type": "application/json",
       },
     });
-    console.log(formData);
+    console.log(data);
     let damta = await res.json();
-  };
-  useEffect(() => {}, []);
+  };*/
+  useEffect(() => { }, []);
 
   return (
     <div className="container">
@@ -152,11 +180,10 @@ export const ArticleForm = () => {
           Submit
         </Button>
       </Form>
-      <form method="POST" encType="multipart/form-data" onSubmit={test}>
-        <input type="file" name="image" />
-        <Button variant="primary" type="submit" className="mt-4">
-          Submit
-        </Button>
+      <form onSubmit={onFormSubmit}>
+        <h1> file upload</h1>
+        <input type="file" name="image" onChange={onInuptChange} />
+        <button type="submit">upload</button>
       </form>
     </div>
   );
