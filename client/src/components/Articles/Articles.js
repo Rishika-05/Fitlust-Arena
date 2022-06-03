@@ -5,17 +5,23 @@ import SingleArticle from '../SingleArticle/SingleArticle'
 import "./Articles.css"
 
 const Articles = () => {
-    var xmlString = "<strong>Hello</strong>";
-  var dataObj = {subtitle:"Subtitle 1",image:exercise, content:xmlString}
-  var articleObject = {title:"Sample Article",image:exercise,author:"Boss",type:"training",breif:"Sample breif text for row" ,data:[dataObj,dataObj,dataObj,dataObj]};
+ 
     const [articles,setArticles] = useState([]);
     
+    const getArticle = async ()=>{
+        
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/retrieve`, {
+            method: "GET", headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        
+        let data = await res.json();
+        console.log(data.articles);
+        setArticles(data.articles);
+    }
     useEffect(()=>{
-        var temp = [];
-        for(let i = 0;i<9;i++){
-            temp.push(articleObject);
-        }
-        setArticles(temp);
+        getArticle();
     },[true])
     
     
@@ -28,9 +34,9 @@ const Articles = () => {
         <h3 className = 'mb-4'>What's New</h3>
         <div id = "articles-box">
             {
-                articles.map((element)=>{
+                articles.map((element,index)=>{
                     
-                    return (<SingleArticle data = {element}/>)
+                    return (<SingleArticle key ={index} data = {element}/>)
                 })
             }
             

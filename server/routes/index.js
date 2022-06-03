@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const uuidv4 = require('uuid');
 const DIR = './public';
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -14,6 +13,6 @@ const storage = multer.diskStorage({
 });
 const articleController = require('../controllers/articleController');
 var uploads = multer({ storage: storage });
-router.post('/upload', uploads.single('image'), articleController.upload)
+router.post('/upload', uploads.array('imageData',12), articleController.upload);
+router.get('/retrieve',articleController.retrieve);
 module.exports = router;
-//.toLowerCase().split(' ').join('-')

@@ -7,14 +7,37 @@ export const ArticleForm = () => {
     { subtitle: "", image: undefined, content: "" },
   ]);
   const [change, setChange] = useState(1);
+  
+  const addsubsection = () => {
+    var dataObj = { subtitle: "", image: undefined, content: "" };
+    var sublistNew = sublist;
+    sublistNew.push(dataObj);
+    setSublist(sublistNew);
+    setChange(!change);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    var dataObj = { subtitle: "", image: undefined, content: "" };
+    var imageArray = [];
 
-
-  //start of change
-  const [file, setfile] = useState(null);
-  const onFormSubmit = (e) => {
-    e.preventDefault();
+    var articleObject = {
+      title: event.target.title.value,
+      image: event.target.thumbnail.files[0],
+      author: event.target.author.value,
+      type: event.target.type.value,
+      brief: event.target.brief.value,
+      data: sublist,
+    };
+    imageArray.push(articleObject.image);
+    for(let i = 0;i<articleObject.data.length;i++){
+      imageArray.push(articleObject.data[i].image);
+    }
+    console.log(articleObject);
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('articleData',JSON.stringify(articleObject));
+    for(let i=0;i<imageArray.length;i++){
+      formData.append('imageData',imageArray[i]);
+    }
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
@@ -27,40 +50,6 @@ export const ArticleForm = () => {
     }).catch((err) => {
       console.log('err', err);
     });
-  }
-  const onInuptChange = (e) => {
-    setfile(e.target.files[0]);
-  }
-  //end of change
-
-
-  const addsubsection = () => {
-    var dataObj = { subtitle: "", image: undefined, content: "" };
-    var sublistNew = sublist;
-    sublistNew.push(dataObj);
-    setSublist(sublistNew);
-    setChange(!change);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    var dataObj = { subtitle: "", image: undefined, content: "" };
-    var articleObject = {
-      title: event.target.title.value,
-      image: event.target.thumbnail.files,
-      author: event.target.author.value,
-      type: event.target.type.value,
-      brief: event.target.brief.value,
-      data: sublist,
-    };
-    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/upload`, {
-      method: "POST",
-      body: JSON.stringify(articleObject),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(articleObject);
-    let data = await res.json();
   };
   const changeSubtitle = (subtitle, index) => {
     var copy = sublist;
@@ -81,28 +70,12 @@ export const ArticleForm = () => {
     setSublist(copy);
     setChange(!change);
   };
-  /*const test = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    console.log(e.target.image.files[0]);
-    formData.append("image", e.target.image.files[0]);
-    let data = { image: e.target.image.files[0] };
 
-    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/upload`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(data);
-    let damta = await res.json();
-  };*/
-  useEffect(() => { }, []);
+  // useEffect(() => { }, []);
 
   return (
     <div className="container">
-      <Form className="mt-4" onSubmit={handleSubmit}>
+      <Form className="mt-4" onSubmit={handleSubmit} enType = "multipart/form-data" >
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Enter the title of article</Form.Label>
           <Form.Control name="title" type="text" placeholder="Title" />
@@ -147,9 +120,9 @@ export const ArticleForm = () => {
                   />
                   <Form.Label>Subsection Image</Form.Label>
                   <Form.Control
-                    value={element.image}
+                    
                     onChange={(event) => {
-                      changeSubtitleImage(event.target.files, index);
+                      changeSubtitleImage(event.target.files[0], index);
                     }}
                     className="mb-3"
                     type="file"
@@ -180,11 +153,6 @@ export const ArticleForm = () => {
           Submit
         </Button>
       </Form>
-      <form onSubmit={onFormSubmit}>
-        <h1> file upload</h1>
-        <input type="file" name="image" onChange={onInuptChange} />
-        <button type="submit">upload</button>
-      </form>
     </div>
   );
 };

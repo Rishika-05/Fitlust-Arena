@@ -15,12 +15,11 @@ const SingleArticle = (props) => {
       <span style = {{fontSize:"1.2rem",fontWeight:"500",color:"gray"}}>{props.data.author} </span>
       <span style = {{fontSize:"1.2rem",fontWeight:"500",color:"gray"}}>{props.data.type}</span>
       <Card.Text >
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
+        {data.brief}
       </Card.Text>
     </div>
     <div>
-      <Card.Img variant="top" src={data.image} style = {{height:"100px",width:"100px"}} />
+      <Card.Img variant="top" src={`${process.env.REACT_APP_SERVER_URL}/public/abc.png`} style = {{height:"100px",width:"100px"}} />
     </div>
     </Card.Body>
   </Card>
