@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-
+const path = require('path');
 dotenv.config({ path: './config.env' });
 const cors = require('cors');
 const app = express();
@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(express.json());
+app.use('/public', express.static(path.join(__dirname, '/public')));
 app.use('/', require('./routes'));
 app.listen(port, () => {
     console.log(`Fitlustarena listening at http://localhost:${port}`);
