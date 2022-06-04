@@ -32,7 +32,7 @@ function NavBar() {
         
       </Navbar.Collapse>
       
-      <BsInstagram  id = "ig-down"  style = {{"height":"45px","width":"40px"}}/>
+      <BsInstagram  id = "ig-down"  onClick = {()=>{window.open('https://www.instagram.com/fitlust_arena','_blank')}}   style = {{"height":"45px","width":"40px",cursor:"pointer"}}/>
       
     </Container>
   </Navbar>

@@ -8,7 +8,7 @@ const SingleArticle = (props) => {
   const navigate = useNavigate();
   const { data } = props;
   return (
-    <Card className="arti-card" style={{ width: '100%', padding: "5px", marginTop: "3%", borderRadius: "10px" }} onClick={() => { navigate(`/articles/${data.title}`) }}>
+    <Card className="arti-card" style={{ width: '100%', padding: "5px", marginTop: "3%", borderRadius: "10px" }} onClick={() => { navigate(`/articles/${data._id}`) }}>
       <Card.Body className="d-flex justify-content-between">
         <div>
           <Card.Title style={{ fontSize: "1.4rem", fontWeight: "600" }}>{props.data.title} </Card.Title>
@@ -19,7 +19,7 @@ const SingleArticle = (props) => {
           </Card.Text>
         </div>
         <div>
-          <Card.Img variant="top" src={`${process.env.REACT_APP_SERVER_URL}/public/abc.png`} style={{ height: "100px", width: "100px" }} />
+          <Card.Img variant="top" src={`${process.env.REACT_APP_SERVER_URL}/public/${data.image.substring(7)}`} style={{ height: "100px", width: "100px" }} />
         </div>
       </Card.Body>
     </Card>

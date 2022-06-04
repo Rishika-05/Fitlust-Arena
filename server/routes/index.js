@@ -15,4 +15,6 @@ const articleController = require('../controllers/articleController');
 var uploads = multer({ storage: storage });
 router.post('/upload', uploads.array('imageData',12), articleController.upload);
 router.get('/retrieve',articleController.retrieve);
+router.get('/getarticles/:type',articleController.getArticles);
+router.get('/articles/:id',articleController.getArticle);
 module.exports = router;

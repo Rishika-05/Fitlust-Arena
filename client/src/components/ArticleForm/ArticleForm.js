@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "./ArticleForm.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const ArticleForm = () => {
   const [sublist, setSublist] = useState([
     { subtitle: "", image: undefined, content: "" },
@@ -15,6 +17,12 @@ export const ArticleForm = () => {
     setSublist(sublistNew);
     setChange(!change);
   };
+  const removesubsection = ()=>{
+    var sublistNew = sublist;
+    sublistNew.pop();
+    setSublist(sublistNew);
+    setChange(!change);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     var dataObj = { subtitle: "", image: undefined, content: "" };
@@ -45,9 +53,27 @@ export const ArticleForm = () => {
     };
     const url = "http://localhost:9002/upload";
     axios.post(url, formData, config).then((res) => {
-      alert("hogaya bhai");
-      console.log(res.data);
+      toast.success("Article Uploaded Successfully", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    })
+
+      
     }).catch((err) => {
+      toast.error("Something went wrong", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    })
       console.log('err', err);
     });
   };
@@ -78,7 +104,7 @@ export const ArticleForm = () => {
       <Form className="mt-4" onSubmit={handleSubmit} enType = "multipart/form-data" >
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Enter the title of article</Form.Label>
-          <Form.Control name="title" type="text" placeholder="Title" />
+          <Form.Control name="title" type="text" placeholder="Title" required/>
         </Form.Group>
         <Form.Select name="type" aria-label="type-select" className="mb-3">
           <option disabled>Select the category of article</option>
@@ -92,15 +118,17 @@ export const ArticleForm = () => {
           name="author"
           className="mb-3"
           placeholder="Author's Name"
+          required
         />
         <Form.Label>Article Thumbnail</Form.Label>
-        <Form.Control name="thumbnail" className="mb-3" type="file" />
+        <Form.Control name="thumbnail" className="mb-3" type="file" required/>
         <Form.Label>Article brief</Form.Label>
         <Form.Control
           type="text"
           name="brief"
           className="mb-3"
           placeholder="Short brief about article"
+          required
         />
         <div id="subsection-box">
           {sublist.map((element, index) => {
@@ -117,6 +145,7 @@ export const ArticleForm = () => {
                     }}
                     type="text"
                     placeholder="Subtitle"
+                    required
                   />
                   <Form.Label>Subsection Image</Form.Label>
                   <Form.Control
@@ -126,6 +155,7 @@ export const ArticleForm = () => {
                     }}
                     className="mb-3"
                     type="file"
+                    required
                   />
                   <Form.Label>
                     {" "}
@@ -139,6 +169,7 @@ export const ArticleForm = () => {
                     }}
                     className="mb-3"
                     placeholder=""
+                    required
                   />
                 </Form.Group>
               </div>
@@ -148,11 +179,15 @@ export const ArticleForm = () => {
         <Button variant="secondary" onClick={addsubsection} className="mt-4">
           Add subsection
         </Button>
+        <Button variant="secondary" onClick={removesubsection} className="mt-4 mx-3">
+          Remove subsection
+        </Button>
         <br></br>
         <Button variant="primary" type="submit" className="mt-4">
           Submit
         </Button>
       </Form>
+      <ToastContainer/>
     </div>
   );
 };

@@ -27,3 +27,23 @@ module.exports.retrieve = async (req, res) => {
         res.status(500).send("Interal Server Error");
     }
 }
+module.exports.getArticle = async  (req,res)=>{
+    try{
+        var id = req.params.id;
+        const article = await Article.findById(id);
+        res.send({article:article});
+    }catch{
+        
+        res.status(500).send("Interal Server Error");
+    }
+}
+module.exports.getArticles = async (req, res) => {
+    try {
+        let articles = await Article.find({type:req.params.type});
+        //console.log(articles);
+        res.send({ articles: articles });
+    } catch {
+        console.log(err.message);
+        res.status(500).send("Interal Server Error");
+    }
+}
