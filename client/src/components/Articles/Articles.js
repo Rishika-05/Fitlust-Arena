@@ -36,12 +36,12 @@ const Articles = () => {
         }
         if(path[path.length-1] == 'n'){
             key = path.slice(-9);
+            if(key === 'nutrition')
             setType(nutrition);
-
-        }
-        if(path[path.length-1] == 's'){
-            key = path.slice(-11);
-            setType(supplements);
+            else{
+                key = path.slice(-15);
+                setType(supplements);
+            }
         }
         getArticle(key);
     },[true])

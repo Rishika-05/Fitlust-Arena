@@ -21,7 +21,7 @@ function App() {
           <Route exact path = "/custom-plans" element = {<CustomPlan/>}/>
           <Route exact path = "/articles/training" element = {<Articles/>}/>
           <Route exact path = "/articles/nutrition" element = {<Articles/>}/>
-          <Route exact path = "/articles/supplements" element = {<Articles/>}/>
+          <Route exact path = "/articles/supplementation" element = {<Articles/>}/>
           <Route exact path = "/articles/:id" element = {<ArticlePage/>}/>
           <Route exact path = "/articles/upload" element = {<ArticleForm/>}/>
         </Routes>

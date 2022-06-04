@@ -12,9 +12,11 @@ const storage = multer.diskStorage({
   }
 });
 const articleController = require('../controllers/articleController');
+const planController = require('../controllers/planController');
 var uploads = multer({ storage: storage });
 router.post('/upload', uploads.array('imageData',12), articleController.upload);
 router.get('/retrieve',articleController.retrieve);
 router.get('/getarticles/:type',articleController.getArticles);
 router.get('/articles/:id',articleController.getArticle);
+router.post('/custom-plan',planController.createPlan);
 module.exports = router;
