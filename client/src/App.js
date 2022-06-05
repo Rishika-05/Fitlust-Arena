@@ -20,6 +20,7 @@ function App() {
       <Router>
         <Navbar/>
         <Routes>
+        <Route exact path = "/" element = {<HomeHeader/>}/>
           <Route exact path = "/custom-plans" element = {<CustomPlan/>}/>
           <Route exact path = "/show-plans" element = {<Plan/>}/>
           <Route exact path = "/show-plans/:id" element = {<PlanPage/>}/>

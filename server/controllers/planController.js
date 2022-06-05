@@ -7,23 +7,21 @@ const transporter = nodemailer.createTransport({
   requireTLS: true,
   auth: {
     user: "teamfitlust@yahoo.com",
-    pass: "lxfpdhbovmdsyatp",
+    pass: "ylcnmwbllggjkyou",
   },
 });
 
 module.exports.createPlan = async (req, res, next) => {
   try {
     var planObject = req.body;
-    // console.log(planObject);
     const { email, name } = req.body;
     const plancheck = await Plan.find({ email: email });
-    // console.log(plancheck);
     if (plancheck.length !== 0) {
       res
         .status(200)
         .send({ message: "Oopss!! You've already applied.", status: 500 });
     }
-    const plan = new Plan(planObject);
+    
     var mailOptions = {
       from: "teamfitlust@yahoo.com",
       to: email,
@@ -40,19 +38,22 @@ module.exports.createPlan = async (req, res, next) => {
       console.log(error);
       res.status(500).send({ message: "Try again later.", status: 500 });
     } else {
-      res
-        .status(200)
-        .send({
-          message: "Details recieved, we'll reach you soon",
-          status: 200,
-          done: 1,
-          detail: info,
-        });
+        const plan = new Plan(planObject);
+     
       console.log(info);
       plan.save((err) => {
         if (err) {
           console.log(err);
           res.status(500).send({ message: "Try again later.", status: 500 });
+        }else{
+            res
+            .status(200)
+            .send({
+              message: "Details recieved, we'll reach you soon",
+              status: 200,
+              done: 1,
+              detail: info,
+            });
         }
       });
     }
