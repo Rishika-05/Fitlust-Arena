@@ -1,25 +1,26 @@
 const Plan = require('../models/Plan');
 const nodemailer = require('nodemailer')
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: 'smtp.mail.yahoo.com',
     port: 587,
     secure: false,
     requireTLS: true,
     auth: {
-        user: 'btech10384@bitmesra.ac.in',
-        pass: ''
+        user: 'teamfitlust@yahoo.com',
+        pass: 'lxfpdhbovmdsyatp'
     }
 });
 
 module.exports.createPlan = (req, res, next) => {
     var planObject = req.body;
+    console.log(planObject);
     const plan = new Plan(planObject);
-    const {email} = req.body;
+    const {email,name} = req.body;
     var mailOptions = {
-        from: 'team.space.793@gmail.com',
+        from: 'teamfitlust@yahoo.com',
         to: email,
-        subject: "Space Login Verification Code",
-        text: `Your Code is:\nUse it to verify your email in Space.\n\nIf you didn't request this, simply ignore this message.\n\nYours,\nThe Space Team`
+        subject: "Custom Diet and workout plan - FITLUST",
+        html:{path:'./mail/beefree-dbbjfimd35j.html'},
     }
     
     plan.save((err) => {
@@ -29,13 +30,13 @@ module.exports.createPlan = (req, res, next) => {
         } else {
             transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
-                    res.send({ done: 0, detail: error });
                     console.log(error);
+                    res.status(500).send({ message: "Try again later.", status: 500 });
                 }
                 else {
-                    res.status(200).send({ message: "Plan Uploaded successfully", status: 200, done: 1, detail: info });
+                    res.status(200).send({ message: "Details recieved, we'll reach you soon", status: 200, done: 1, detail: info });
                     console.log(info);
-                }
+                } 
             })
         }
     })
