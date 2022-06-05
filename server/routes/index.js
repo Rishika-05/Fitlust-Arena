@@ -19,4 +19,6 @@ router.get('/retrieve',articleController.retrieve);
 router.get('/getarticles/:type',articleController.getArticles);
 router.get('/articles/:id',articleController.getArticle);
 router.post('/custom-plan',planController.createPlan);
+router.get('/show-plans',planController.getPlans);
+router.get('/show-plans/:id',planController.getPlan);
 module.exports = router;

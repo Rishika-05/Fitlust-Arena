@@ -6,6 +6,8 @@ import Articles from './components/Articles/Articles'
 import ArticlePage from './components/ArticlePage/ArticlePage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  ArticleForm  from './components/ArticleForm/ArticleForm';
+import PlanPage from './components/Plans/PlanPage'
+import Plan from './components/Plans/Plan'
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,6 +21,8 @@ function App() {
         <Navbar/>
         <Routes>
           <Route exact path = "/custom-plans" element = {<CustomPlan/>}/>
+          <Route exact path = "/show-plans" element = {<Plan/>}/>
+          <Route exact path = "/show-plans/:id" element = {<PlanPage/>}/>
           <Route exact path = "/articles/training" element = {<Articles/>}/>
           <Route exact path = "/articles/nutrition" element = {<Articles/>}/>
           <Route exact path = "/articles/supplementation" element = {<Articles/>}/>
