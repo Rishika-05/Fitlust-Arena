@@ -11,7 +11,7 @@ const corsOptions = {
     origin: "https://fitlust-arena.vercel.app"
 };
 app.use(express.static('public'));
-app.use(cors());
+app.use(cors(corsOptions));
 connectToMongo();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
