@@ -12,6 +12,7 @@ module.exports.upload = (req, res, next) => {
         if (err) {
             console.log(err);
         } else {
+            res.setHeader('Access-Control-Allow-Origin','*');
             res.status(200).send({ message: "Article Uploaded successfully" });
         }
     })

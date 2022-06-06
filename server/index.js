@@ -7,11 +7,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const connectToMongo = require('./config/mongoose');
 const port = process.env.PORT || 9002;
-const corsOptions = {
-    origin: "https://fitlust-arena.vercel.app"
-};
+
 app.use(express.static('public'));
-app.use(cors(corsOptions));
+app.use(cors());
 connectToMongo();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

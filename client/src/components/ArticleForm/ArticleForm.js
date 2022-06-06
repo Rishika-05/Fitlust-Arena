@@ -51,6 +51,7 @@ export const ArticleForm = () => {
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
+        'Access-Control-Allow-Origin': '*'
       },
     };
     const url = `${process.env.REACT_APP_SERVER_URL}/upload`;
