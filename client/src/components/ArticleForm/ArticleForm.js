@@ -53,7 +53,7 @@ export const ArticleForm = () => {
         'content-type': 'multipart/form-data',
       },
     };
-    const url = "http://localhost:9002/upload";
+    const url = `${process.env.REACT_APP_SERVER_URL}/upload`;
     axios.post(url, formData, config).then((res) => {
       toast.success("Article Uploaded Successfully", {
         position: "top-center",
