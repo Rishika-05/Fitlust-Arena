@@ -7,18 +7,24 @@ module.exports.upload = (req, res, next) => {
         articleObject.data[i].image = imageArray[i + 1].path;
     }
     //console.log(articleObject);
+    try{
     const article = new Article(articleObject);
     article.save((err) => {
         if (err) {
             console.log(err);
+            console.log("hello");
+            res.status(200).send({message:"Article name is already used"});
         } else {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Methods', 'POST');
-            
-            console.log(res);
             res.status(200).send({ message: "Article Uploaded successfully" });
         }
     })
+    }catch(err){
+
+        console.log(err);
+        
+    }
 
 }
 module.exports.retrieve = async (req, res) => {
