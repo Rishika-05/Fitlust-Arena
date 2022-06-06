@@ -12,7 +12,6 @@ const transporter = nodemailer.createTransport({
 });
 
 module.exports.createPlan = async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
   var chk = 0;
   try {
     var planObject = req.body;
