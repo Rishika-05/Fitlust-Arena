@@ -58,6 +58,7 @@ const CustomPlan = () => {
         let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/custom-plan`, {
             method: "POST", body: JSON.stringify(planObj), headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
           });
         let data = await res.json();
