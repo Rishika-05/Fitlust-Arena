@@ -1,20 +1,23 @@
-#custom-plan{
+#custom-plan {
     /* background: linear-gradient(180deg,#494c56,#838899);
     background-repeat: no-repeat;
     height: 100vh; */
-    
+
 }
-.label-margin{
-    margin-bottom:10px;
-    margin-top:50px;
+
+.label-margin {
+    margin-bottom: 10px !important;
+    margin-top: 50px !important;
 }
-.switch-style{  
-    display:flex;
-    flex-direction: row;
+
+.switch-style {
+    display: flex !important;
+    flex-direction: row !important;
 }
-.name-mail{
-    background-color: #c5dbe7;
-    padding:15px;
-    border-radius:5px;
-    width:50vw;
+
+.name-mail {
+    background-color: #c5dbe7 !important;
+    padding: 15px !important;
+    border-radius: 5px !important;
+    width: 50vw !important;
 }

@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "./ArticleForm.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export const ArticleForm = () => {
   const [sublist, setSublist] = useState([
     { subtitle: "", image: undefined, content: "" },
   ]);
   const [change, setChange] = useState(1);
-  
+  const [key, setkey] = useState("");
+  const [chk, setchk] = useState(false);
+  const [name, setname] = useState("");
   const addsubsection = () => {
     var dataObj = { subtitle: "", image: undefined, content: "" };
     var sublistNew = sublist;
@@ -17,7 +19,7 @@ export const ArticleForm = () => {
     setSublist(sublistNew);
     setChange(!change);
   };
-  const removesubsection = ()=>{
+  const removesubsection = () => {
     var sublistNew = sublist;
     sublistNew.pop();
     setSublist(sublistNew);
@@ -37,14 +39,14 @@ export const ArticleForm = () => {
       data: sublist,
     };
     imageArray.push(articleObject.image);
-    for(let i = 0;i<articleObject.data.length;i++){
+    for (let i = 0; i < articleObject.data.length; i++) {
       imageArray.push(articleObject.data[i].image);
     }
     console.log(articleObject);
     const formData = new FormData();
-    formData.append('articleData',JSON.stringify(articleObject));
-    for(let i=0;i<imageArray.length;i++){
-      formData.append('imageData',imageArray[i]);
+    formData.append('articleData', JSON.stringify(articleObject));
+    for (let i = 0; i < imageArray.length; i++) {
+      formData.append('imageData', imageArray[i]);
     }
     const config = {
       headers: {
@@ -61,9 +63,9 @@ export const ArticleForm = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-    })
+      })
 
-      
+
     }).catch((err) => {
       toast.error("Something went wrong", {
         position: "top-center",
@@ -73,7 +75,7 @@ export const ArticleForm = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-    })
+      })
       console.log('err', err);
     });
   };
@@ -98,97 +100,146 @@ export const ArticleForm = () => {
   };
 
   // useEffect(() => { }, []);
-
-  return (
-    <div className="container">
-      <Form className="mt-4" onSubmit={handleSubmit} enType = "multipart/form-data" >
-        <Form.Group className="mb-3" controlId="title">
-          <Form.Label>Enter the title of article</Form.Label>
-          <Form.Control name="title" type="text" placeholder="Title" required/>
-        </Form.Group>
-        <Form.Select name="type" aria-label="type-select" className="mb-3">
-          <option disabled>Select the category of article</option>
-          <option value="training">Training</option>
-          <option value="nutrition">Nutrition</option>
-          <option value="supplementation">Supplementation</option>
-        </Form.Select>
-        <Form.Label>Author's name</Form.Label>
-        <Form.Control
-          type="text"
-          name="author"
-          className="mb-3"
-          placeholder="Author's Name"
-          required
-        />
-        <Form.Label>Article Thumbnail</Form.Label>
-        <Form.Control name="thumbnail" className="mb-3" type="file" required/>
-        <Form.Label>Article brief</Form.Label>
-        <Form.Control
-          type="text"
-          name="brief"
-          className="mb-3"
-          placeholder="Short brief about article"
-          required
-        />
-        <div id="subsection-box">
-          {sublist.map((element, index) => {
-            return (
-              <div key={index} className="p-3">
-                <Form.Group className="mb-3" controlId="subarticle">
-                  <Form.Label>
-                    Enter title for Subsection {index + 1}
-                  </Form.Label>
-                  <Form.Control
-                    value={element.subtitle}
-                    onChange={(event) => {
-                      changeSubtitle(event.target.value, index);
-                    }}
-                    type="text"
-                    placeholder="Subtitle"
-                    required
-                  />
-                  <Form.Label>Subsection Image</Form.Label>
-                  <Form.Control
-                    
-                    onChange={(event) => {
-                      changeSubtitleImage(event.target.files[0], index);
-                    }}
-                    className="mb-3"
-                    type="file"
-                    required
-                  />
-                  <Form.Label>
-                    {" "}
-                    Subsection content in markdown language
-                  </Form.Label>
-                  <Form.Control
-                    value={element.content}
-                    type="text"
-                    onChange={(event) => {
-                      changeSubtitleContent(event.target.value, index);
-                    }}
-                    className="mb-3"
-                    placeholder=""
-                    required
-                  />
-                </Form.Group>
-              </div>
-            );
-          })}
-        </div>
-        <Button variant="secondary" onClick={addsubsection} className="mt-4">
-          Add subsection
-        </Button>
-        <Button variant="secondary" onClick={removesubsection} className="mt-4 mx-3">
-          Remove subsection
-        </Button>
-        <br></br>
-        <Button variant="primary" type="submit" className="mt-4">
-          Submit
-        </Button>
-      </Form>
-      <ToastContainer/>
+  const onclick = () => {
+    if (key === "ratul sir god" && name === "ratul") {
+      toast.success("Key Verified", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      setchk(true);
+    }
+    else {
+      toast.error("Incorrect Try again", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      setkey("");
+      setname("");
+      setchk(false);
+    }
+  }
+  const FormButton = props => (
+    <div id="button" class="planrow">
+      <button onClick={onclick}>{props.title}</button>
     </div>
+  );
+  return (
+    (chk === true) ?
+      <div className="container">
+        <Form className="mt-4" onSubmit={handleSubmit} enType="multipart/form-data" >
+          <Form.Group className="mb-3" controlId="title">
+            <Form.Label>Enter the title of article</Form.Label>
+            <Form.Control name="title" type="text" placeholder="Title" required />
+          </Form.Group>
+          <Form.Select name="type" aria-label="type-select" className="mb-3">
+            <option disabled>Select the category of article</option>
+            <option value="training">Training</option>
+            <option value="nutrition">Nutrition</option>
+            <option value="supplementation">Supplementation</option>
+          </Form.Select>
+          <Form.Label>Author's name</Form.Label>
+          <Form.Control
+            type="text"
+            name="author"
+            className="mb-3"
+            placeholder="Author's Name"
+            required
+          />
+          <Form.Label>Article Thumbnail</Form.Label>
+          <Form.Control name="thumbnail" className="mb-3" type="file" required />
+          <Form.Label>Article brief</Form.Label>
+          <Form.Control
+            type="text"
+            name="brief"
+            className="mb-3"
+            placeholder="Short brief about article"
+            required
+          />
+          <div id="subsection-box">
+            {sublist.map((element, index) => {
+              return (
+                <div key={index} className="p-3">
+                  <Form.Group className="mb-3" controlId="subarticle">
+                    <Form.Label>
+                      Enter title for Subsection {index + 1}
+                    </Form.Label>
+                    <Form.Control
+                      value={element.subtitle}
+                      onChange={(event) => {
+                        changeSubtitle(event.target.value, index);
+                      }}
+                      type="text"
+                      placeholder="Subtitle"
+                      required
+                    />
+                    <Form.Label>Subsection Image</Form.Label>
+                    <Form.Control
+
+                      onChange={(event) => {
+                        changeSubtitleImage(event.target.files[0], index);
+                      }}
+                      className="mb-3"
+                      type="file"
+                      required
+                    />
+                    <Form.Label>
+                      {" "}
+                      Subsection content in markdown language
+                    </Form.Label>
+                    <Form.Control
+                      value={element.content}
+                      type="text"
+                      onChange={(event) => {
+                        changeSubtitleContent(event.target.value, index);
+                      }}
+                      className="mb-3"
+                      placeholder=""
+                      required
+                    />
+                  </Form.Group>
+                </div>
+              );
+            })}
+          </div>
+          <Button variant="secondary" onClick={addsubsection} className="mt-4">
+            Add subsection
+          </Button>
+          <Button variant="secondary" onClick={removesubsection} className="mt-4 mx-3">
+            Remove subsection
+          </Button>
+          <br></br>
+          <Button variant="primary" type="submit" className="mt-4">
+            Submit
+          </Button>
+        </Form>
+      </div>
+      :
+      <>
+        <div id="loginform">
+          <div>
+            <h2 id="headerTitle">Admin Login</h2>
+            <div className='planrow'>
+              <label>Username</label>
+              <input type="text" placeholder="Username" onChange={(e) => { setname(e.target.value) }} />
+            </div>
+            <div className='planrow'>
+              <label>Username</label>
+              <input type="password" placeholder="Admin Key" onChange={(e) => { setkey(e.target.value) }} />
+            </div>
+            <FormButton title="Log in" />
+          </div>
+        </div>
+      </>
   );
 };
 export default ArticleForm;
