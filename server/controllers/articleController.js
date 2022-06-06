@@ -12,7 +12,10 @@ module.exports.upload = (req, res, next) => {
         if (err) {
             console.log(err);
         } else {
-            res.setHeader('Access-Control-Allow-Origin','*');
+            headers.append('Access-Control-Allow-Origin', '*');
+            headers.append('Access-Control-Allow-Methods', 'POST');
+            
+            console.log(res);
             res.status(200).send({ message: "Article Uploaded successfully" });
         }
     })
