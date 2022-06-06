@@ -12,8 +12,8 @@ module.exports.upload = (req, res, next) => {
         if (err) {
             console.log(err);
         } else {
-            headers.append('Access-Control-Allow-Origin', '*');
-            headers.append('Access-Control-Allow-Methods', 'POST');
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'POST');
             
             console.log(res);
             res.status(200).send({ message: "Article Uploaded successfully" });
