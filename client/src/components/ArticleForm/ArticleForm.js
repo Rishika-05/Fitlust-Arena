@@ -56,7 +56,7 @@ export const ArticleForm = () => {
     };
     const url = `${process.env.REACT_APP_SERVER_URL}/upload`;
     axios.post(url, formData, config).then((res) => {
-      toast.success("Article Uploaded Successfully", {
+      toast(res.data.message, {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
