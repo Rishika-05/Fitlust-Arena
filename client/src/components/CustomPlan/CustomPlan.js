@@ -153,9 +153,6 @@ const CustomPlan = () => {
                         id="input-wt"
                         placeholder = "Your weight"
                     />
-                    <Switch onChange={()=>{setWeightUnit(!weightUnit)}} handleDiameter = {30}  width = {80} height = {40} uncheckedIcon = {false} checkedIcon = {false} onColor = {'#899da8'} offColor ={'#899da8'} checked = {weightUnit} 
-                            id="wt-switch"
-                    />
                     </div>
                 </div>
             </div>

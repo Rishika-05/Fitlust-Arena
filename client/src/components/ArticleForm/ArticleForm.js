@@ -101,7 +101,7 @@ export const ArticleForm = () => {
 
   // useEffect(() => { }, []);
   const onclick = () => {
-    if (key === "ratul sir god" && name === "ratul") {
+    if (key === "admin" && name === "admin") {
       toast.success("Key Verified", {
         position: "top-center",
         autoClose: 2000,

@@ -51,15 +51,15 @@ const Articles = () => {
   return (
     <div className = "container pb-4" >
         <h1 className = "mt-5">{type.title}</h1>
-        <img src = {type.image} className = "mt-5" style = {{height:"20vw",width:"30vw"}}></img>
+        <img src = {type.image} className = "mt-5 image-fix"></img>
         <p style = {{"fontSize":"1.4rem",color:"gray",fontWeight:"500"}} className = "mt-5">{type.text}</p>
         <h3 className = 'mb-4'>What's New</h3>
         <div id = "articles-box">
             {
-                articles.map((element,index)=>{
+                (articles.length>0)?articles.map((element,index)=>{
                     
                     return (<SingleArticle key ={index} data = {element}/>)
-                })
+                }):<h1>Coming Soon</h1>
             }
             
         </div>
