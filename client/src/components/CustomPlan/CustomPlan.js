@@ -87,7 +87,7 @@ const CustomPlan = () => {
     }
     
   return (
-    <div id = "custom-plan" className = "container pb-5">
+    <div id = "custom-plan" className = "container pb-5 p-4">
         
         <div className = "text-center">
             <h2 className = "mt-5" style = {{fontWeight:"700"}}><i>Free Offer From <span style = {{"color":"#899da8"}}>FIT</span>LUST</i></h2>
@@ -235,7 +235,7 @@ const CustomPlan = () => {
                 id="input-wt"
             />
             </div>
-            <div className = "mt-5 name-mail">
+            <div className = "mt-5 col-sm-12">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>First Name</Form.Label>
                     <Form.Control type="text" name="name" />
