@@ -11,7 +11,7 @@ import AboutHome from '../AboutHome/AboutHome';
 
 const HomeHeader = () => {
   return (
-        <main style={{marginTop:"150px"}}>
+        <main style={{marginTop:"130px"}}>
           <header
             className="header-section"
             onContextMenu={(e) => e.preventDefault()}

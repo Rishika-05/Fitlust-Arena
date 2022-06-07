@@ -238,7 +238,7 @@ const CustomPlan = () => {
                 id="input-wt"
             />
             </div>
-            <div className = "mt-5 col-sm-12">
+            <div className = "mt-5  col-sm-12 col-md-5 name-mail">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>First Name</Form.Label>
                     <Form.Control type="text" name="name" />
