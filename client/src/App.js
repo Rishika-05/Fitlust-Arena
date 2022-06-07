@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from "./components/Navbar/Navbar"
 import HomeHeader from './components/HomeHeader/HomeHeader';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import CustomPlan from './components/CustomPlan/CustomPlan';
 import Articles from './components/Articles/Articles'
 import ArticlePage from './components/ArticlePage/ArticlePage'

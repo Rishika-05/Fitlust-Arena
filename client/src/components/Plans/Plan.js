@@ -22,7 +22,7 @@ const Plan = () => {
         getPlans();
     }, [true]);
     const onclick = () => {
-        if (key === "ratul sir god" && name === "ratul") {
+        if (key === "admin" && name === "admin") {
             toast.success("Key Verified", {
                 position: "top-center",
                 autoClose: 2000,
@@ -66,7 +66,7 @@ const Plan = () => {
                                 <input type="text" placeholder="Username" onChange={(e) => { setname(e.target.value) }} />
                             </div>
                             <div className='planrow'>
-                                <label>Username</label>
+                                <label>Password</label>
                                 <input type="password" placeholder="Admin Key" onChange={(e) => { setkey(e.target.value) }} />
                             </div>
                             <FormButton title="Log in" />

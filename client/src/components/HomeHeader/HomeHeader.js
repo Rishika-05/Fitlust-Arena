@@ -22,23 +22,17 @@ const HomeHeader = () => {
               Your browser does not support the video. Sorry for the
               inconvenience.
             </video>
-            <div className="hero-heading">
-              <h2 className="heading__header--sub">
+            <div className="hero-heading" >
+              <h2 className="heading__header--sub" style = {{fontSize:"1.5rem"}}>
                 <br />
                 Everyone Needs a Tune-up
               </h2>
-              <h1 className="heading__header">
+              <h1 className="heading__header" style = {{fontSize:"2.6rem"}}>
                 Get In. <br />
                 Get Fit. <br /> Get on with Life.
               </h1>
             </div>
-            <button
-              className="next-btn"
-              aria-label="Discover Fit Art"
-              onClick={() => document.getElementById("about").scrollIntoView()}
-            >
-              <FaAngleDown />
-            </button>
+            
           </header>
           <div id="about">
             <AboutHome />

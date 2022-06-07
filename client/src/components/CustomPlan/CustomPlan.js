@@ -5,10 +5,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import body from "../../assets/male-bodybuilder-silhouette-flexing-muscles.png"
 import Switch from 'react-switch';
+import {Bars} from 'react-loader-spinner';
 
 const CustomPlan = () => {
     const [heightUnit,setHeightUnit] = useState(1);
     const [weightUnit,setWeightUnit] = useState(true);
+    const [spinner,setSpinner] = useState(false);
     var age = [];
     for(let i = 16;i<= 90;i++){
         age.push(i);
@@ -40,6 +42,7 @@ const CustomPlan = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSpinner(true);
         let planObj = {
             gender: e.target.gender.value,
             age: e.target.age.value,
@@ -54,7 +57,6 @@ const CustomPlan = () => {
             name: e.target.name.value,
             email: e.target.email.value
         }
-        console.log(planObj);
         let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/custom-plan`, {
             method: "POST", body: JSON.stringify(planObj), headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +64,7 @@ const CustomPlan = () => {
             },
           });
         let data = await res.json();
-        console.log(data);
+        setSpinner(false);
         if(data.status === 200){
             toast.success(data.message, {
                 position: "top-center",
@@ -84,6 +86,7 @@ const CustomPlan = () => {
                 progress: undefined,
             })
         }
+        
     }
     
   return (
@@ -91,15 +94,15 @@ const CustomPlan = () => {
         
         <div className = "text-center">
             <h2 className = "mt-5" style = {{fontWeight:"700"}}><i>Free Offer From <span style = {{"color":"#899da8"}}>FIT</span>LUST</i></h2>
-            <h1 className = "mt-5" style = {{fontWeight:"750","letterSpacing":"2px",fontSize:"3rem",color:"#00000"}}>Fill Out The Form Below And We’ll Personally Send You A Free Customized Fitness Plan To Help You Achieve The Head-Turning Body You’re After As Efficiently As Possible.</h1>
+            <h1 className = "mt-5" style = {{fontWeight:"750","letterSpacing":"2px",fontSize:"2.5rem",color:"#00000"}}>Fill Out The Form Below And We’ll Personally Send You A Free Customized Fitness Plan </h1>
             <p className='mt-4' style = {{fontSize:"1.7rem"}}>Get started now to receive your individualized workout routine,<br/>daily calorie/macro targets and supplement recommendations…</p>
         </div>
         <Form style = {{fontSize:"1.3rem"}} onSubmit={handleSubmit}>
             <div id ="insert-image" className = "row">
-                <div className = "col-md-6" >
-                    <img src = {body}></img>
+                <div className = "col-md-6 col-sm-12 mx-auto" style = {{"height":"fit-content"}} >
+                    <img src = {body} style = {{height:"50%",width:"80%"}}></img>
                 </div>
-                <div className = "col-md-6">
+                <div className = "col-md-6 col-sm-12">
                     <label for = "gender" className = "label-margin"><strong>Are you male or female?</strong></label>
                     <div id = "gender">
                     {[{type:'radio',value:"Male"}, {type:'radio',value:"Female"}].map((obj) => (
@@ -250,7 +253,9 @@ const CustomPlan = () => {
                 </Form.Group>
                 
                 <Button variant="dark" type="submit">
-                    Submit
+                    {spinner?<Bars height="30"
+    width="50"
+    color='white'/>:"Submit"}
                 </Button>
             </div>
 

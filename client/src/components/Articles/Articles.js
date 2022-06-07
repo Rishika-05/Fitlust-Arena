@@ -49,10 +49,10 @@ const Articles = () => {
     
     
   return (
-    <div className = "container pb-4" >
+    <div className = "container pb-4 p-4" >
         <h1 className = "mt-5">{type.title}</h1>
         <img src = {type.image} className = "mt-5 image-fix"></img>
-        <p style = {{"fontSize":"1.4rem",color:"gray",fontWeight:"500"}} className = "mt-5">{type.text}</p>
+        <p style = {{"fontSize":"1.4rem",color:"gray",fontWeight:"500",textAlign:"justify"}} className = "mt-5">{type.text}</p>
         <h3 className = 'mb-4'>What's New</h3>
         <div id = "articles-box">
             {
