@@ -46,8 +46,8 @@ const ArticlePage =  () => {
   return (
     
     
-    articles && articleObject && <div className = "container-fluid main-box-article row">
-      <div className = "col-md-9 px-5">
+    articles && articleObject && <div className = "container-fluid main-box-article row pb-5">
+      <div className = "col-md-9 col-sm-12">
         <h1 className = 'mt-5'>{articleObject.title}</h1>
         <span style = {{fontSize:"1.2rem",fontWeight:"500",color:"gray",marginRight:"10px"}}><AiOutlineUser/>{articleObject.author} </span>
         <span style = {{fontSize:"1.2rem",fontWeight:"500",color:"gray"}}><VscTypeHierarchy/>{articleObject.type}</span>
@@ -61,7 +61,7 @@ const ArticlePage =  () => {
                   <h3 className = "mb-5">{element.subtitle}</h3>
                   <div >
                     <img src = {`${process.env.REACT_APP_SERVER_URL}/public/${element.image.substring(7)}`} style = {{marginRight:"2%"}}></img>
-                    <div dangerouslySetInnerHTML={createMarkup(element.content)} className = "mt-5" style = {{fontSize:"1.4rem"}}></div>
+                    <div dangerouslySetInnerHTML={createMarkup(element.content)} className = "mt-5" style = {{fontSize:"1.4rem",wordWrap:'break-word'}}></div>
                   </div>
                 </div>
               );
@@ -70,17 +70,17 @@ const ArticlePage =  () => {
           }
         </div>
       </div>
-      <div className = "col-md-3 mt-5">
+      <div className = "col-md-3 mt-5 px-3">
         <div>
           <h4>Recommended Posts</h4>
           {
             articles.slice(0,7).map((element)=>{
-               return( (articleObject._id != element._id)&&<p onClick = {()=> {navigate(`/articles/${element._id}`)}}><BsArrowReturnRight style = {{"marginRight":"5px"}}/><span style = {{fontWeight:"450",color:"purple",fontFamily:"sans-serif"}} >{element.title}</span>
+               return( (articleObject._id != element._id)&&<p onClick = {()=> {navigate(`/articles/${element._id}`)}}><BsArrowReturnRight style = {{"marginRight":"5px"}}/><span style = {{fontWeight:"450",color:"purple",fontFamily:"sans-serif",cursor:'pointer'}} >{element.title}</span>
                </p>);
             })
           }
         </div>
-        <img src = {signup} className = "mt-5"></img>
+        <img src = {signup}  onClick = {()=> {navigate(`/custom-plans`)}} style = {{'cursor':'pointer'}}className = "mt-5 "></img>
       </div>
      </div>
    

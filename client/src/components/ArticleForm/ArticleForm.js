@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import "./ArticleForm.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Bars} from 'react-loader-spinner';
 export const ArticleForm = () => {
   const [sublist, setSublist] = useState([
     { subtitle: "", image: undefined, content: "" },
@@ -12,6 +13,7 @@ export const ArticleForm = () => {
   const [key, setkey] = useState("");
   const [chk, setchk] = useState(false);
   const [name, setname] = useState("");
+  const [spinner,setSpinner] = useState(false);
   const addsubsection = () => {
     var dataObj = { subtitle: "", image: undefined, content: "" };
     var sublistNew = sublist;
@@ -27,6 +29,7 @@ export const ArticleForm = () => {
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSpinner(true);
     var dataObj = { subtitle: "", image: undefined, content: "" };
     var imageArray = [];
 
@@ -56,6 +59,7 @@ export const ArticleForm = () => {
     };
     const url = `${process.env.REACT_APP_SERVER_URL}/upload`;
     axios.post(url, formData, config).then((res) => {
+      setSpinner(false);
       toast(res.data.message, {
         position: "top-center",
         autoClose: 2000,
@@ -68,6 +72,7 @@ export const ArticleForm = () => {
 
 
     }).catch((err) => {
+      setSpinner(false);
       toast.error("Something went wrong", {
         position: "top-center",
         autoClose: 2000,
@@ -220,7 +225,9 @@ export const ArticleForm = () => {
           </Button>
           <br></br>
           <Button variant="primary" type="submit" className="mt-4">
-            Submit
+            {spinner?<Bars height="30"
+    width="50"
+    color='white'/>:"Submit"}
           </Button>
         </Form>
       </div>
@@ -234,7 +241,7 @@ export const ArticleForm = () => {
               <input type="text" placeholder="Username" onChange={(e) => { setname(e.target.value) }} />
             </div>
             <div className='planrow'>
-              <label>Username</label>
+              <label>Password</label>
               <input type="password" placeholder="Admin Key" onChange={(e) => { setkey(e.target.value) }} />
             </div>
             <FormButton title="Log in" />

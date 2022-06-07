@@ -76,4 +76,14 @@ transform-origin: bottom left;
         
     }
 }
+@media screen and (max-width:400px){
+    #ig-up{
+        display:none;
+        
+    }
+    #ig-down{
+        display:none;
+        
+    }
+}
 

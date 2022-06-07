@@ -11,7 +11,7 @@ function NavBar() {
 
     <>
    
-    <Navbar id = "outer-nav" expand = "lg" className = "navbar-dark sticky-top" style={{height:"90px"}}>
+    <Navbar id = "outer-nav" expand = "lg" className = "navbar-dark sticky" style={{zIndex:100}}>
     <Container>
       <Navbar.Brand href="#home" className='me-5 ms-3'>
         <Logo style = {{"height":"80px","width":"120px"}}/>
