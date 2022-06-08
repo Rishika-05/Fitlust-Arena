@@ -39,7 +39,7 @@ const PlanPage = () => {
         <h5>Weight</h5>
         <p>{plan.weight} kg</p>
         <h5>How active are you during a typical week?</h5>
-        <p>plan.activity</p>
+        <p>{plan.activity}</p>
         <h5>Body Fat %</h5>
         <p>{plan.bodyFat}</p>
         <h5>Which of the following best describes your current situation?</h5>
