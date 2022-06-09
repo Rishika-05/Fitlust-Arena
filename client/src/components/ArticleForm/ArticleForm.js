@@ -107,7 +107,7 @@ export const ArticleForm = () => {
 
   // useEffect(() => { }, []);
   const onclick = () => {
-    if (key === "admin" && name === "admin") {
+    if ((key === process.env.REACT_APP_PASS) && name === "admin") {
       toast.success("Key Verified", {
         position: "top-center",
         autoClose: 2000,

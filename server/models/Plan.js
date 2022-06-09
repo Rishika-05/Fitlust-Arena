@@ -55,6 +55,6 @@ const planSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-const Plan = mongoose.model("CustomPlan", planSchema);
+const Plan = mongoose.model("newCustomPlan", planSchema);
 
 module.exports = Plan;
