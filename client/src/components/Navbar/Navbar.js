@@ -13,7 +13,7 @@ function NavBar() {
    
     <Navbar id = "outer-nav" expand = "lg" className = "navbar-dark sticky" style={{zIndex:100}}>
     <Container>
-      <Navbar.Brand href="#home" className='me-5 ms-3'>
+      <Navbar.Brand href="/" className='me-5 ms-3'>
         <Logo style = {{"height":"80px","width":"120px"}}/>
       </Navbar.Brand>
       <BsInstagram id = "ig-up"  style = {{"height":"45px","width":"40px","margin-left":"20vw"}}/>
